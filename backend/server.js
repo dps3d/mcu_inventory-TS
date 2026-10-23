@@ -35,6 +35,11 @@ app.get(['/api/page', '/api/pages'], (req, res) => {
   res.json(page);
 });
 
-app.listen(PORT, () => {
-  console.log(`MCU Inventory API Server works on http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`MCU Inventory API Server works on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
+

@@ -129,6 +129,8 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  fullName?: string | null;
+  role: 'admin' | 'instructor' | 'lab_assistant';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -156,6 +158,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  componentCode?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -431,6 +434,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Common {
   id: number;
   siteName: string;
+  headerPhone?: string | null;
+  dbStatus: 'online' | 'maintenance';
   menu?:
     | {
         label: string;
@@ -438,8 +443,9 @@ export interface Common {
         id?: string | null;
       }[]
     | null;
-  footer?: {
-    text?: string | null;
+  footer: {
+    text: string;
+    systemInfo?: string | null;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -450,6 +456,8 @@ export interface Common {
  */
 export interface CommonSelect<T extends boolean = true> {
   siteName?: T;
+  headerPhone?: T;
+  dbStatus?: T;
   menu?:
     | T
     | {
@@ -461,6 +469,7 @@ export interface CommonSelect<T extends boolean = true> {
     | T
     | {
         text?: T;
+        systemInfo?: T;
       };
   updatedAt?: T;
   createdAt?: T;
